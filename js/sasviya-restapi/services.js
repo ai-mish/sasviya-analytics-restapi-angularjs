@@ -4,7 +4,7 @@ angular.module('loanApp')
 .factory('loanService', ['$http', '$q', '$localStorage','$httpParamSerializer' , function($http, $q,$localStorage,$httpParamSerializer){
   var factory = {
       connect:connect,
-      execute:execute
+      executeDecision:executeDecision
     };
 
     var baseURL = "http://viya33.apac.sas.com"

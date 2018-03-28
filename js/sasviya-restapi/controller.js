@@ -20,7 +20,7 @@ function ($scope,$httpParamSerializer,$http,$window,loanService) {
           console.log(data)
           $window.sessionStorage.token = data.token;
           $scope.message = 'Welcome';
-          loanService.execute(decisionPublishedName,input_data_json).
+          loanService.executeDecision(decisionPublishedName,input_data_json).
           then(function(response){console.log(response)},function(error){console.log(error)})
         }, function(error){
           console.error(error);
