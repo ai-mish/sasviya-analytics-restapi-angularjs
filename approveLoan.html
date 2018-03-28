@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.11/ngStorage.js"></script>
+    <script src="./js/sasviya-restapi/app.js"></script>
+    <script src="./js/sasviya-restapi/services.js"></script>
+    <script src="./js/sasviya-restapi/controller.js"></script>
+    <link rel="stylesheet" type="text/css" href="./css/index.css">
+</head>
+<body ng-app="loanApp">
+    <div class="container" ng-controller="loanController">
+        <div class="logo left"><img src="./img/sas_logo.png" width="161" height="37" /></div>
+            Products: {{products | json}}
+            <hr>
+            <button ng-click="loginSASViya()">Update</button>
+        </div>
+    </div>
+</body>
+</html>

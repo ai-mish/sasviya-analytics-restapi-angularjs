@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.11/ngStorage.js"></script>
+    <script src="./js/cas/app.js"></script>
+    <script src="./js/cas/http-interceptor.js"></script>
+    <script src="./js/cas/services.js"></script>
+    <script src="./js/cas/controller.js"></script>
+    <link rel="stylesheet" type="text/css" href="./css/index.css">
+</head>
+<body ng-app="myApp">
+    <div class="container" ng-controller="casctrl">
+        <div class="logo left"><img src="./img/sas_logo.png" width="161" height="37" /></div>
+
+        <div class="jumbotron centered">
+            <h1 class="header">AirBnb Hosting Price Calculator</h1>
+            <p>Please enter some details to estimate price.</p>
+            <hr>
+
+            <div>
+               <form name="casForm" novalidate>
+                <div class="form-row">
+                    <label for="roomType">Room Type</label>
+                    <div class="input-group">
+                        <select class="form-control currency" id="roomType"
+                                ng-options="o.name for o in roomtype_options"
+                                ng-model="room_type_selectedOption">
+                        </select>
+                    </div>
+                </div>
+                <br>
+                <div class="form-row">
+                    <label for="cancellation_policy">Cancellation Policy</label>
+                    <div class="input-group">
+                        <select class="form-control currency" id="cancellation_policy"
+                                ng-options="o.name for o in cancellation_policy_options"
+                                ng-model="cancellation_policy_selectedOption">
+                        </select>
+                    </div>
+                </div>
+                <br>
+                <div class="form-row">
+                    <label for="propertyPrice">Accomodates</label>
+                    <div class="input-group">
+                        <input type="number" value="0" min="0" step="10000" data-number-to-fixed="3" data-number-stepfactor="100" class="form-control currency"
+                              ng-model="accommodates"/>
+                    </div>
+                </div>
+                <br>
+                <div class="form-row">
+                    <label for="propertyPrice">Air Conditioning</label>
+                    <div class="input-group">
+                         <select class="form-control currency" type="radio"
+                                ng-options="key as value for  (key , value) in booleanvalue"
+                                ng-model="air_conditioning_selectedOption"></select>
+                    </div>
+                </div>
+                <br>
+                <div class="form-row">
+                    <label for="propertyPrice">Pool</label>
+                    <div class="input-group">
+                         <select class="form-control currency" type="radio"
+                                ng-options="key as value for  (key , value) in booleanvalue"
+                                ng-model="pool_selectedOption"></select>
+                    </div>
+                </div>
+                <br>
+
+                <button class="btn btn-primary" id="btn" ng-click="runModel(predictor, 'modelResult')">Calculate</button>
+                <img id="loading" style="height:70px;"/>
+              </form>
+              <div class="form-row">
+                <strong><label for="modelResult">Predicted Price</label></strong><br />
+                <div class="input-group">
+                  <span class="input-group-addon">$</span>
+                  <input value="{{ scoreResult }}" class="form-control currency">
+                </div>
+              </div>
+              <br>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
