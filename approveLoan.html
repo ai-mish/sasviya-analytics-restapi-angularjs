@@ -51,7 +51,7 @@
                          <div class="form-row">
                            <label for="VALUE">VALUE</label>
                            <div class="input-group">
-                               <input class="form-control currency"
+                               <input type="number" value="0" min="0" max="25" step="1" class="form-control currency"
                                      ng-model="VALUE"/>
                            </div>
                          </div>
@@ -66,7 +66,14 @@
                         <strong><label for="modelResult">Approved</label></strong><br />
                         <div class="input-group">
                           <span class="input-group-addon">$</span>
-                          <input value="{{ scoreResult | number:2 }}" class="form-control currency"/>
+                          <input value="{{ Approve }}" class="form-control currency"/>
+                        </div>
+                      </div>
+                      <div class="col-xs-6 col-md-4">
+                        <strong><label for="modelResult">Approved</label></strong><br />
+                        <div class="input-group">
+                          <span class="input-group-addon">$</span>
+                          <input value="{{ P_BAD1 | number:2 }}" class="form-control currency"/>
                         </div>
                       </div>
                     </div>
