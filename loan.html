@@ -6,25 +6,17 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-  <meta name="description" content="">
+  <meta name="description" content="Loan Application">
   <meta name="author" content="">
   <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
   <link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-  <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.11/ngStorage.js"></script>
-  <script src="./js/sasviya-restapi/app.js"></script>
-  <script src="./js/sasviya-restapi/http-interceptor.js"></script>
-  <script src="./js/sasviya-restapi/services.js"></script>
-  <script src="./js/sasviya-restapi/controller.js"></script>
   <link rel="stylesheet" type="text/css" href="./css/index.css">
   <link rel="stylesheet" type="text/css" href="./css/loanapp.css">
 </head>
 
 <body ng-app="loanApp">
+
 
   <div class="container">
     <div class="row">
@@ -34,88 +26,100 @@
     </div>
   </div>
 
-  <!--<div class="jumbotron d-flex align-items-center" > -->
-
 
   <div class="container container-override" ng-controller="loanController">
-
-
+    <div class="loading" ng-show="running">Loading&#8230;</div>
     <div class="row">
       <div class="col-sm-3 col-md-6 col-lg-12">
-      <div class="col-sm-3">
-        <h2 class="header">Loan App</h2>
-        <hr class="my-4">
+        <div class="col-sm-3">
+          <h2 class="header">Loan App</h2>
+          <hr class="my-4">
+        </div>
       </div>
     </div>
-  </div>
+
 
     <form>
+
       <div class="row">
         <div class="col-sm-3 col-md-6 col-lg-12">
           <div class="col-sm-3">
             <label for="propertyValue">Value of property</label>
             <div class="input-group col-lg-10">
-              <input type="number" class="form-control" id="propertyValue" placeholder="0">
+              <input type="number" class="form-control" id="propertyValue" ng-model="Input_Property_Value" placeholder="0"/>
             </div>
           </div>
           <div class="col-sm-3">
             <label for="CLNO">Current number of credit lines</label>
             <div class="input-group col-lg-10">
-              <input type="number" class="form-control" id="CLNO" placeholder="0">
+              <input type="number" class="form-control" id="CLNO" ng-model="Input_CLNO" placeholder="0"/>
             </div>
           </div>
           <div class="col-sm-3">
             <label for="Job">Occupational Categories</label>
-            <div class="input-group col-lg-12">
-              <select class="form-control" id="job">
-                          <option ng-repeat = "job in jobs">{{job}}</option>
+            <div class="input-group col-lg-10">
+              <select class="form-control" id="job" ng-model="Input_Job">
+                          <option ng-repeat = "job in jobs" >{{job}}</option>
                   </select>
             </div>
           </div>
           <div class="col-sm-3">
             <label for="Reason">Reason for the loan</label>
-            <div class="input-group col-lg-12">
-              <select class="form-control" id="reason">
-                          <option ng-repeat = "reason in reasons">{{reason}}</option>
+            <div class="input-group col-lg-10">
+              <select class="form-control" id="reason" ng-model="Input_Reason">
+                          <option ng-repeat = "reason in reasons" >{{reason}}</option>
                   </select>
             </div>
           </div>
-        </div><!--<div class="col-sm-3 col-md-6 col-lg-12">-->
+        </div>
+        <!--<div class="col-sm-3 col-md-6 col-lg-12">-->
       </div>
       <!-- Row end  -->
-    </form>
+
 
     <!--End Form and display result-->
 
+
+
     <div class="row top-buffer">
       <div class="col-sm-3 col-md-6 col-lg-12">
-      <div class="col-sm-3">
-        <button type="submit" class="btn btn-primary mb-2">Check</button>
+        <div class="col-sm-3">
+          <button id="btn" ng-click="test()" class="btn btn-primary mb-2">Check</button>
+        </div>
       </div>
     </div>
-  </div>
+
+    </form>
     <div class="row top-buffer">
       <div class="col-sm-3 col-md-6 col-lg-12">
-      <div class="col-sm-3">
-        <label for="status">Approve or Rejected</label>
-        <div class="input-group">
-          <input type="text" class="form-control" id="status" placeholder="Click Check Button">
+        <div class="col-sm-3">
+          <label for="status">Approve or Rejected</label>
+          <div class="input-group">
+            <input type="text" class="form-control" id="status" ng-model="Approve" placeholder="Click Check Button" readonly>
+          </div>
         </div>
-      </div>
-      <div class="col-sm-3">
-        <label for="P_BAD1">Probability of default</label>
-        <div class="input-group">
-          <input type="number" class="form-control" id="P_BAD1" placeholder="0.0">
+        <div class="col-sm-3">
+          <label for="P_BAD1">Probability of default</label>
+          <div class="input-group">
+            <input type="number" class="form-control" id="P_BAD1" ng-model="P_BAD1" placeholder="0.0" readonly>
+          </div>
         </div>
-      </div>
       </div>
     </div>
 
   </div>
+
   <!--container end-->
 
-  <!--END <div class="col-sm-3 col-md-6 col-lg-12"> -->
-
+  <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.11/ngStorage.js"></script>
+  <script src="./js/sasviya-restapi/app.js"></script>
+  <script src="./js/sasviya-restapi/http-interceptor.js"></script>
+  <script src="./js/sasviya-restapi/services.js"></script>
+  <script src="./js/sasviya-restapi/controller.js"></script>
 </body>
 
 </html>
