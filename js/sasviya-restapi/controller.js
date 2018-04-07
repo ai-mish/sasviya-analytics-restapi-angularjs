@@ -64,9 +64,6 @@ function ($scope,$httpParamSerializer,$http,$window,loanService) {
 
     console.log(input_data_json)
     executeDecision(decisionPublishedName,input_data_json);
-    $scope.Approve="YES";
-    $scope.P_BAD1=40;
-
 
   }
 
