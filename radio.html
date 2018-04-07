@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="./css/radio.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.11/ngStorage.js"></script>
+    <script src="./js/sasviya-restapi/app.js"></script>
+    <script src="./js/sasviya-restapi/http-interceptor.js"></script>
+    <script src="./js/sasviya-restapi/services.js"></script>
+    <script src="./js/sasviya-restapi/controller.js"></script>
+</head>
+<body ng-app="loanApp">
+<div>
+  <form ng-submit="dummy()" ng-controller="loanController" ng-cloak>
+    
+    <p>Selected Value: <span class="radioValue">{{ data.group1 }}</span> </p>
+
+    <md-radio-group ng-model="data.group1">
+      <md-radio-button value="Apple" class="md-primary">Apple</md-radio-button>
+      <md-radio-button value="Banana"> Banana </md-radio-button>
+      <md-radio-button value="Mango">Mango</md-radio-button>
+    </md-radio-group>
+
+    <hr />
+
+
+  </form>
+</div>
+</body>
+</html>

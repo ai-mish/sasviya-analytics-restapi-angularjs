@@ -39,6 +39,29 @@ function ($scope,$httpParamSerializer,$http,$window,loanService) {
         });
   }
 
+
+  function populateData(){
+    $scope.modelProcessing = true
+    console.log('Token:');
+    $scope.Approve="No";
+    $scope.P_BAD1=1;
+    $scope.modelProcessing = false;
+    $scope.currentJob = "Sales";
+    $scope.jobs =
+        [
+            "Sales", "Self",
+            "Mgr", "Office"
+        ];
+    $scope.reasons =
+        [
+            "DebtCon", "HomeImp"
+        ];
+    $scope.formData = {};
+    console.log($scope.formData)
+  }
+
+populateData()
+
 $scope.run = function() {
     var CLNO=$scope.CLNO;
     var JOB = $scope.JOB;
@@ -60,7 +83,7 @@ $scope.run = function() {
       input_data_json["inputs"][3]["value"]=VALUE;
 
       console.log(input_data_json);
-      runDecision(decisionPublishedName,input_data_json);
+      dummy(decisionPublishedName,input_data_json);
     }
 
 }]);
