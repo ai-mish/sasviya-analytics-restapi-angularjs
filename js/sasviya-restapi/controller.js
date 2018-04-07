@@ -39,7 +39,7 @@ function ($scope,$httpParamSerializer,$http,$window,loanService) {
   init()
 
 
-  $scope.test = function() {
+  $scope.run = function() {
     console.log('Test')
 
 
@@ -63,14 +63,14 @@ function ($scope,$httpParamSerializer,$http,$window,loanService) {
     input_data_json["inputs"][3]["value"]=VALUE;
 
     console.log(input_data_json)
-    //runDecision(decisionPublishedName,input_data_json);
+    executeDecision(decisionPublishedName,input_data_json);
     $scope.Approve="YES";
     $scope.P_BAD1=40;
 
 
   }
 
-  function runDecision(decisionPublishedName,input_data_json){
+  function executeDecision(decisionPublishedName,input_data_json){
     if ( $window.sessionStorage.token ) {
     delete $window.sessionStorage.token;
     }
