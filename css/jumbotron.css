@@ -1,0 +1,23 @@
+/* Move down content because we have a fixed navbar that is 50px tall */
+body {
+  padding-top: 100px;
+  padding-bottom: 20px;
+}
+.jumbotron {
+    height: 50vh;
+    margin-left: 150px;
+    margin-right: 150px;
+    background-color:#fff;
+    border: 1px soild #eee;
+    background-repeat:no-repeat;
+    background-position:center;
+    background-size: cover;
+    padding:5px 0 5px 0;
+}
+
+
+.container-override {
+  background-color: #f0f0f0;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
